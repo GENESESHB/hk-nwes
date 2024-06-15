@@ -1,83 +1,108 @@
-# Website Press Information README
+### project  with instructions on how to run it using React and NestJS.
 
-*Built by Hassan Boudraa, Full Stack Software Engineer*
+### README.md
+
+```markdown
+# Press Information System
 
 ## Introduction
-Welcome to our Press Information page! This resource is designed to provide members of the media with the latest news, updates, and essential information about our company. Here, you will find press releases, media kits, company background, and contact information.
 
-## Table of Contents
-1. [About Us](#about-us)
-2. [Press Releases](#press-releases)
-3. [Media Kit](#media-kit)
-4. [Logos and Images](#logos-and-images)
-5. [Contact Information](#contact-information)
-6. [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq)
-7. [Social Media Links](#social-media-links)
+Welcome to the Press Information System project. This application serves as a comprehensive platform for delivering the latest press information, sports updates, weather forecasts, and more. The system is designed to provide users with a seamless and intuitive experience, ensuring that they have access to the most current and relevant information at their fingertips.
 
-## About Us
-Our company is dedicated to [brief description of your company’s mission, vision, and values]. Since [year of establishment], we have been [brief history and key achievements].
+## Technologies Used
 
-For more detailed information about our company, visit our [About Us](link to About Us page) page.
+### Frontend
+- **React**: A JavaScript library for building user interfaces, ensuring a dynamic and responsive experience for users.
+- **CSS**: For styling the components and creating a visually appealing interface.
+- **FontAwesome**: For adding vector icons and social logos to the application.
 
-## Press Releases
-Stay up to date with our latest news and announcements. Our press releases cover a wide range of topics, including product launches, company milestones, and industry insights.
+### Backend
+- **NestJS**: A progressive Node.js framework for building efficient, reliable, and scalable server-side applications.
 
-- [Press Release 1](link to press release 1)
-- [Press Release 2](link to press release 2)
-- [Press Release 3](link to press release 3)
+## Features
 
-For older press releases, please visit our [Press Release Archive](link to archive).
+- **Home**: The main landing page with the latest press information.
+- **About**: Information about the platform and its purpose.
+- **Contact Us**: A page for users to get in touch with the administrators.
+- **Sport Info**: The latest updates and news in the world of sports.
+- **Meteo**: Current weather forecasts and related information.
+- **Language Support**: Dropdown to select the preferred language.
 
-## Media Kit
-Our media kit provides journalists with essential information and resources for their stories. It includes:
+## Running the Project
 
-- Company Overview
-- Executive Bios
-- Product Information
-- Recent Press Coverage
-- Contact Details
+### Prerequisites
 
-Download the full media kit [here](link to media kit).
+- **Node.js**: Ensure you have Node.js installed on your system.
+- **npm**: Node Package Manager, typically installed with Node.js.
 
-## Logos and Images
-High-resolution versions of our logos and product images are available for download. Please adhere to our branding guidelines when using these assets.
+### Frontend
 
-- [Company Logo](link to logo)
-- [Product Images](link to product images)
-- [Event Photos](link to event photos)
+1. **Navigate to the frontend directory**:
+    ```bash
+    cd frontend
+    ```
 
-For additional visual assets, please contact our media relations team.
+2. **Install dependencies**:
+    ```bash
+    npm install
+    ```
 
-## Contact Information
-For press inquiries, please contact:
+3. **Start the React application**:
+    ```bash
+    npm start
+    ```
 
-**Media Relations Contact:**
-- Name: Hassan Boudraa
-- Title: Full Stack Software Engineer
-- Email: [Hassan Boudraa's Email]
-- Phone: [Hassan Boudraa's Phone]
+    This will start the React development server and the application will be available at `http://localhost:3000`.
 
-For general inquiries, please visit our [Contact Us](link to contact page) page.
+### Backend
 
-## Frequently Asked Questions (FAQ)
-Find answers to common questions about our company, products, and services.
+1. **Navigate to the backend directory**:
+    ```bash
+    cd backend
+    ```
 
-- [FAQ 1](link to FAQ 1)
-- [FAQ 2](link to FAQ 2)
-- [FAQ 3](link to FAQ 3)
+2. **Install dependencies**:
+    ```bash
+    npm install
+    ```
 
-For additional questions, feel free to reach out to our media relations team.
+3. **Start the NestJS application**:
+    ```bash
+    npm run start
+    ```
 
-## Social Media Links
-Stay connected and follow us on social media for real-time updates:
+    This will start the NestJS server and the backend will be available at `http://localhost:3001`.
 
-- [Facebook](link to Facebook)
-- [Twitter](link to Twitter)
-- [LinkedIn](link to LinkedIn)
-- [Instagram](link to Instagram)
+## Directory Structure
 
-Thank you for visiting our Press Information page. We look forward to working with you!
+```
+press-info-navbar/
+|-- backend/
+|   |-- src/
+|   |   |-- app.module.ts
+|   |   |-- main.ts
+|   |   |-- ...
+|   |-- package.json
+|-- frontend/
+|   |-- public/
+|   |   |-- index.html
+|   |-- src/
+|   |   |-- assets/
+|   |   |   |-- hklg.jpg
+|   |   |-- components/
+|   |   |   |-- Navbar.js
+|   |   |-- App.js
+|   |   |-- index.js
+|   |   |-- Navbar.css
+|   |-- package.json
+|-- README.md
+```
 
----
+This structured approach ensures a clean separation of concerns, with the frontend and backend components managed independently but working seamlessly together to deliver a robust press information system.
 
-If you have any suggestions or need further assistance, please do not hesitate to contact us.
+## Conclusion
+
+The Press Information System leverages modern web technologies to provide a reliable and user-friendly platform for accessing press information, sports updates, weather forecasts, and more. By using React for the frontend and NestJS for the backend, we ensure a scalable and maintainable application that can easily adapt to future requirements.
+
+We hope you find this project useful and look forward to your contributions and feedback.
+```
