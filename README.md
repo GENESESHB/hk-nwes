@@ -51,7 +51,7 @@ Welcome to the Press Information System project. This application serves as a co
     npm start
     ```
 
-    This will start the React development server and the application will be available at `http://localhost:3000`.
+    This will start the React development server and the application will be available at `http://localhost:4000`.
 
 ### Backend
 
