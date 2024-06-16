@@ -1,8 +1,7 @@
 ### project  with instructions on how to run it using React and NestJS.
 
-### README.md
 
-```markdown
+
 # Press Information System
 
 ## Introduction
@@ -105,4 +104,4 @@ This structured approach ensures a clean separation of concerns, with the fronte
 The Press Information System leverages modern web technologies to provide a reliable and user-friendly platform for accessing press information, sports updates, weather forecasts, and more. By using React for the frontend and NestJS for the backend, we ensure a scalable and maintainable application that can easily adapt to future requirements.
 
 We hope you find this project useful and look forward to your contributions and feedback.
-```
+
