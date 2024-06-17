@@ -1,7 +1,7 @@
 // src/components/Navbar.js
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faInfoCircle, faEnvelope, faFutbol, faCloudSun, faGlobe } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faInfoCircle, faEnvelope, faFutbol, faCloudSun, faGlobe, faUserShield } from '@fortawesome/free-solid-svg-icons';
 import './Navbar.css';
 import logo from '../assets/hklg-removebg-preview.png';
 
@@ -24,6 +24,7 @@ const Navbar = () => {
           <li><a href="#meteo"><FontAwesomeIcon icon={faCloudSun} /> حالة الطقس</a></li>
           <li><a href="#about"><FontAwesomeIcon icon={faInfoCircle} /> حول</a></li>
           <li><a href="#contactus"><FontAwesomeIcon icon={faEnvelope} /> اتصل بنا</a></li>
+          <li><a href="#admin"><FontAwesomeIcon icon={faUserShield} /> الوصول إلى الإدارة</a></li>
           <li className="dropdown">
             <a href="#" className="dropbtn"><FontAwesomeIcon icon={faGlobe} /> اللغة</a>
             <div className="dropdown-content">
@@ -44,4 +45,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

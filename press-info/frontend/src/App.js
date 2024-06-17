@@ -1,19 +1,30 @@
 import React from 'react';
-import './App.css';
-import Navbar from './components/Navbar.js';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import SportInfo from './pages/SportInfo';
+import Meteo from './pages/Meteo';
+import About from './pages/About';
+import ContactUs from './pages/ContactUs';
+import AdminLogin from './pages/AdminLogin';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <Navbar />
-      <main className="container mx-auto mt-5">
-        {/* Your main application content goes here */}
-        <h1 className="text-2xl font-bold">Welcome to My Application</h1>
-        <p>This is the main content area of your application.</p>
-      </main>
-    </div>
+    <Router>
+      <div>
+        <Navbar />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/sportinfo" component={SportInfo} />
+          <Route path="/meteo" component={Meteo} />
+          <Route path="/about" component={About} />
+          <Route path="/contactus" component={ContactUs} />
+          <Route path="/admin" component={AdminLogin} />
+        </Switch>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
 
