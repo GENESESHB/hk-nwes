@@ -97,6 +97,10 @@ press-info-navbar/
 |-- README.md
 ```
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 This structured approach ensures a clean separation of concerns, with the frontend and backend components managed independently but working seamlessly together to deliver a robust press information system.
 
 ## Conclusion
