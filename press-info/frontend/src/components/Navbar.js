@@ -1,15 +1,21 @@
-// src/components/Navbar.js
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faInfoCircle, faEnvelope, faFutbol, faCloudSun, faGlobe, faUserShield } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 import logo from '../assets/hklg-removebg-preview.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Function to toggle the menu open/close
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  // Function to close the menu
+  const closeMenu = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -19,18 +25,18 @@ const Navbar = () => {
           <img src={logo} alt="Logo" />
         </div>
         <ul className={`nav-links ${isOpen ? 'active' : ''}`}>
-          <li><a href="#home"><FontAwesomeIcon icon={faHome} /> الصفحة الرئيسية</a></li>
-          <li><a href="#sportinfo"><FontAwesomeIcon icon={faFutbol} /> معلومات الرياضة</a></li>
-          <li><a href="#meteo"><FontAwesomeIcon icon={faCloudSun} /> حالة الطقس</a></li>
-          <li><a href="#about"><FontAwesomeIcon icon={faInfoCircle} /> حول</a></li>
-          <li><a href="#contactus"><FontAwesomeIcon icon={faEnvelope} /> اتصل بنا</a></li>
-          <li><a href="#admin"><FontAwesomeIcon icon={faUserShield} /> الوصول إلى الإدارة</a></li>
+          <li><Link to="/" onClick={closeMenu}><FontAwesomeIcon icon={faHome} /> الصفحة الرئيسية</Link></li>
+          <li><Link to="/sportinfo" onClick={closeMenu}><FontAwesomeIcon icon={faFutbol} /> معلومات الرياضة</Link></li>
+          <li><Link to="/meteo" onClick={closeMenu}><FontAwesomeIcon icon={faCloudSun} /> حالة الطقس</Link></li>
+          <li><Link to="/about" onClick={closeMenu}><FontAwesomeIcon icon={faInfoCircle} /> حول</Link></li>
+          <li><Link to="/contactus" onClick={closeMenu}><FontAwesomeIcon icon={faEnvelope} /> اتصل بنا</Link></li>
+          <li><Link to="/admin" onClick={closeMenu}><FontAwesomeIcon icon={faUserShield} /> الوصول إلى الإدارة</Link></li>
           <li className="dropdown">
-            <a href="#" className="dropbtn"><FontAwesomeIcon icon={faGlobe} /> اللغة</a>
+            <a href="#" className="dropbtn" onClick={(e) => e.preventDefault()}><FontAwesomeIcon icon={faGlobe} /> اللغة</a>
             <div className="dropdown-content">
-              <a href="#english">English</a>
-              <a href="#french">French</a>
-              <a href="#spanish">Spanish</a>
+              <a href="#english" onClick={closeMenu}>English</a>
+              <a href="#french" onClick={closeMenu}>French</a>
+              <a href="#spanish" onClick={closeMenu}>Spanish</a>
             </div>
           </li>
         </ul>
