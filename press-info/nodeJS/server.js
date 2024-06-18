@@ -4,10 +4,13 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
-const User = require('./models/user'); // Importing the User model
+const jwt = require('jsonwebtoken');
+const transporter = require('./config/nodemailer');
+const User = require('./models/user');
 
 const app = express();
 const PORT = 5000;
+const JWT_SECRET = 'SE:HASSANBOUDRAA'; // Use a secure secret
 
 // Middleware
 app.use(cors());
@@ -25,43 +28,43 @@ connection.once('open', () => {
   console.log('Connected to MongoDB database');
 });
 
-// Routes
-app.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    // Find user by email
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({ message: 'Invalid credentials' });
-    }
+// Send Verification Email
+const sendVerificationEmail = (user) => {
+  const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '1d' });
+  const verificationLink = `http://localhost:5000/verify-email?token=${token}`;
 
-    // Compare passwords
-    const passwordMatch = await bcrypt.compare(password, user.password);
-    if (passwordMatch) {
-      res.status(200).json({ message: 'Login successful' });
+  const mailOptions = {
+    from: 'hassan.hbmama@gmail.com',
+    to: user.email,
+    subject: 'Email Verification',
+    html: `<p>Click <a href="${verificationLink}">here</a> to verify your email.</p>`
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error('Error sending email:', error);
     } else {
-      res.status(400).json({ message: 'Invalid credentials' });
+      console.log('Email sent:', info.response);
     }
-  } catch (error) {
-    console.error('Error during login:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
+  });
 
+  // Save the token to the user
+  user.verificationToken = token;
+  user.save();
+};
+
+// Routes
 app.post('/register', async (req, res) => {
   const { email, password, phoneNumber, city } = req.body;
 
   try {
-    // Check if email already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: 'Email already exists' });
     }
 
-    // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create new user
     const newUser = new User({
       email,
       password: hashedPassword,
@@ -69,11 +72,63 @@ app.post('/register', async (req, res) => {
       city,
     });
 
-    // Save user to database
     await newUser.save();
-    res.status(201).json({ message: 'Registration successful' });
+
+    sendVerificationEmail(newUser);
+
+    res.status(201).json({ message: 'Registration successful, please verify your email.' });
   } catch (error) {
     console.error('Error during registration:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+app.get('/verify-email', async (req, res) => {
+  const { token } = req.query;
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const user = await User.findById(decoded.id);
+
+    if (!user) {
+      return res.status(400).json({ message: 'Invalid token' });
+    }
+
+    if (user.isVerified) {
+      return res.status(400).json({ message: 'Email already verified' });
+    }
+
+    user.isVerified = true;
+    user.verificationToken = null;
+    await user.save();
+
+    res.status(200).json({ message: 'Email verified successfully' });
+  } catch (error) {
+    console.error('Error verifying email:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
+
+    if (!user.isVerified) {
+      return res.status(400).json({ message: 'Email not verified' });
+    }
+
+    res.status(200).json({ message: 'Login successful' });
+  } catch (error) {
+    console.error('Error during login:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
