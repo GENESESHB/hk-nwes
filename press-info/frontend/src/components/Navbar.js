@@ -30,7 +30,7 @@ const Navbar = () => {
           <li><Link to="/meteo" onClick={closeMenu}><FontAwesomeIcon icon={faCloudSun} /> حالة الطقس</Link></li>
           <li><Link to="/about" onClick={closeMenu}><FontAwesomeIcon icon={faInfoCircle} /> حول</Link></li>
           <li><Link to="/contactus" onClick={closeMenu}><FontAwesomeIcon icon={faEnvelope} /> اتصل بنا</Link></li>
-          <li><Link to="/admin" onClick={closeMenu}><FontAwesomeIcon icon={faUserShield} /> الوصول إلى الإدارة</Link></li>
+          <li><Link to="/login" onClick={closeMenu}><FontAwesomeIcon icon={faUserShield} /> الوصول إلى الإدارة</Link></li>
           <li className="dropdown">
             <a href="#" className="dropbtn" onClick={(e) => e.preventDefault()}><FontAwesomeIcon icon={faGlobe} /> اللغة</a>
             <div className="dropdown-content">

@@ -1,3 +1,4 @@
+// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -5,9 +6,10 @@ import Home from './pages/Home';
 import SportInfo from './pages/SportInfo';
 import Meteo from './pages/Meteo';
 import About from './pages/About';
+import Register from './pages/Register';
 import ContactUs from './pages/ContactUs';
-import AdminLogin from './pages/AdminLogin';
-import './App.css';  // Ensure you have some global styles
+import Login from './pages/Login'; // Ensure this path is correct
+import './App.css';
 
 const App = () => {
   return (
@@ -21,7 +23,8 @@ const App = () => {
             <Route path="/meteo" element={<Meteo />} />
             <Route path="/about" element={<About />} />
             <Route path="/contactus" element={<ContactUs />} />
-            <Route path="/admin" element={<AdminLogin />} />
+            <Route path="/register" element={<Register/>} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </div>
       </div>
